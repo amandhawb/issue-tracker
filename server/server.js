@@ -12,7 +12,7 @@ let issues = [
 
 app.use(bodyParser.json());
 
-// Get all issues
+// Get all issues --> Read all issues
 app.get('/issues', (req,res) => {
     res.json(issues)
 });
@@ -20,4 +20,6 @@ app.get('/issues', (req,res) => {
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
-})
+});
+
+module.exports = app;
