@@ -59,6 +59,7 @@ app.put('/issues/:id', (req, res) => {
     }
 });
 
+// Delete issue by ID --> Remove the item based on ID
 app.delete('/issues/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = issues.findIndex(issue => issue.id === id);
@@ -69,9 +70,6 @@ app.delete('/issues/:id', (req, res) => {
         res.status(404).json({ message: "Issue not found" });
     }
 });
-
-// Delete issue by ID --> Remove the item based on ID
-
 
 
 app.listen(port, () => {
