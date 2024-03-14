@@ -39,7 +39,7 @@ app.post('/issues', (req,res) => {
     res.status(201).json(newIssue);
 });
 
-// Update issue by ID --> Change the item
+// Update issue by ID --> Change the item based on ID
 app.put('/issues/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = issues.findIndex(issue => issue.id === id);
@@ -49,7 +49,21 @@ app.put('/issues/:id', (req, res) => {
     } else {
         res.status(404).json({ message: "Issue not found" });
     }
-})
+});
+
+app.delete('/issues/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = issues.findIndex(issue => issue.id === id);
+    if (index !== -1) {
+        issues.splice(index, 1);
+        res.status(204).send();
+    } else {
+        res.status(404).json({ message: "Issue not found" });
+    }
+});
+
+// Delete issue by ID --> Remove the item based on ID
+
 
 
 app.listen(port, () => {

@@ -60,5 +60,13 @@ describe('Issue Tracker API', () => {
                 done();
             });
     });
+    it('should delete an existing issue', (done) => {
+        chai.request(server)
+            .delete('/issues/1')
+            .end((err, res) => {
+                expect(res).to.have.status(204);
+                done();
+            });
+    });
 });
 
