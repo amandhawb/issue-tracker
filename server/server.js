@@ -17,6 +17,19 @@ app.get('/issues', (req,res) => {
     res.json(issues)
 });
 
+// Get issue by ID --> Read a specific issue
+app.get('/issues/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const issue = issues.find(issue => issue.id === id);
+    if(issue) {
+        res.json(issue);
+    } else {
+        res.status(404).json({
+            message: "Issue not found"
+        });
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);

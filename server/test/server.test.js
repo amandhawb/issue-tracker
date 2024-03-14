@@ -16,4 +16,24 @@ describe('Issue Tracker API', () => {
                 done();
             });
     });
+    it('should return a single issue by ID', (done) => {
+        chai.request(server)
+            .get('/issues/1')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body.title).to.equal('Issue 1');
+                done();
+            })
+    });
+    it('should return a 404 error when ID is not found', (done) => {
+        chai.request(server)
+            .get('/issues/100')
+            .end((err, res) => {
+                expect(res).to.have.status(404);
+                expect(res.text).to.equal('{"message":"Issue not found"}')
+                done();
+            })
+    })
 });
+
