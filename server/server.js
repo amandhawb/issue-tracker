@@ -39,6 +39,18 @@ app.post('/issues', (req,res) => {
     res.status(201).json(newIssue);
 });
 
+// Update issue by ID --> Change the item
+app.put('/issues/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = issues.findIndex(issue => issue.id === id);
+    if (index !== -1) {
+        issues[index] = { ...issues[index], ...req.body };
+        res.json(issues[index]);
+    } else {
+        res.status(404).json({ message: "Issue not found" });
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);

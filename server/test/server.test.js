@@ -49,5 +49,16 @@ describe('Issue Tracker API', () => {
                 done();
             });
     });
+    it('should update an existing issue', (done) => {
+        chai.request(server)
+            .put('/issues/1')
+            .send({ description: 'Updated description of issue 1' })
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body.description).to.equal('Updated description of issue 1');
+                done();
+            });
+    });
 });
 
