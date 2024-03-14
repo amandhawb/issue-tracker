@@ -30,6 +30,15 @@ app.get('/issues/:id', (req, res) => {
     }
 });
 
+// Create new issue --> Insert the new issue to the list
+app.post('/issues', (req,res) => {
+    const { title, description } = req.body;
+    const id = issues.length +1;
+    const newIssue = { id, title, description };
+    issues.push(newIssue);
+    res.status(201).json(newIssue);
+});
+
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);

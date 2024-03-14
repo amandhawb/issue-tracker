@@ -34,6 +34,20 @@ describe('Issue Tracker API', () => {
                 expect(res.text).to.equal('{"message":"Issue not found"}')
                 done();
             })
-    })
+    });
+    it('should create a new issue', (done) => {
+        chai.request(server)
+            .post('/issues')
+            .send({
+                title: 'New issue',
+                description: 'Description...'
+            })
+            .end((err, res) => {
+                expect(res).to.have.status(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body.title).to.equal('New issue');
+                done();
+            });
+    });
 });
 
