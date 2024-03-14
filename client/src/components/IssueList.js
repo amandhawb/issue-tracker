@@ -65,7 +65,6 @@ function IssueList() {
                     <li key={issue.id}>       
                         <h2>{issue.title}</h2>
                         <p>{issue.description}</p>
-                        <a href={issue.link}>{issue.link}</a>
                         <button onClick={() => handleDeleteIssue(issue.id)}>Delete Issue</button>
                         <button onClick={() => handleUpdateIssue(issue.id)}>Update Issue</button>
                         <button onClick={() => handleOpenIssue(issue.link)}>Open Issue</button>
